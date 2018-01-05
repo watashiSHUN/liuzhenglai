@@ -1,18 +1,25 @@
 <template>
-<div class="header">
-    <div class="container">
-    <div class="nav">
-    <a class="nav-item">Post</a>
+  <div class="home">
+    <div class="header">
+      <div class="container">
+        <div class="nav">
+          <a class="nav-item">Post</a>
+        </div>
+      </div>
     </div>
+    <div class="body">
+      <div class="container">
+        <div v-for="post in posts" class="post-card">{{ post }}</div>
+      </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      msg: "Welcome to Your Vue.js App"
+      posts: ["123", "123", "123", "123", "123", "123"]
     };
   }
 };
@@ -20,7 +27,7 @@ export default {
 
 <style scoped lang="less">
 .header {
-  background: #fff;
+  background-color: #fff;
   .nav {
     a.nav-item {
       color: #333;
@@ -28,18 +35,18 @@ export default {
       padding: 0.5em 1em;
       display: inline-block;
       cursor: pointer;
-      transition: background 0.15s ease-in-out;
+      transition: background-color 0.15s ease-in-out;
 
       &:hover {
-        background: #ddd;
+        background-color: #ddd;
       }
     }
   }
 }
 
-.container {
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+.post-card {
+  background-color: #fff;
+  margin: 1em 0;
+  padding: 1em;
 }
 </style>

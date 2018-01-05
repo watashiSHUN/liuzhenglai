@@ -20,4 +20,14 @@ body {
   font-family: "Microsoft Yahei", sans-serif;
   background: #aaa;
 }
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 1024px) {
+  .container {
+    max-width: 850px;
+  }
+}
 </style>
