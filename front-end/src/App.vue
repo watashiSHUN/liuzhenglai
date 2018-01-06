@@ -18,6 +18,13 @@ export default {
   padding: 0;
 }
 
+html,
+body,
+#app,
+.page {
+  height: 100%;
+}
+
 body {
   font-family: "Microsoft Yahei", sans-serif;
   background: #f0f3f5;

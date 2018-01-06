@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import _ from 'lodash'
 
 Vue.config.productionTip = false
 
@@ -12,6 +13,12 @@ window.store = {
   },
   setPosts(posts) {
     this.state.posts = posts
+  },
+  newPost(post) {
+    this.state.posts.unshift(post)
+  },
+  deletePost(postId) {
+    this.state.posts.splice(this.state.posts.findIndex(p => p.id === postId), 1)
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home-page page">
     <div class="header">
       <div class="container">
         <div class="site-title">Liu Zhenglai</div>
@@ -16,6 +16,8 @@
               <div class="post-title">
                 {{ post.title }}
               </div>
+              <div class="post-meta">{{ post.time }}</div>
+              <div class="post-excerpt">{{ post.excerpt }}</div>
             </a>
           </li>
         </ul>
