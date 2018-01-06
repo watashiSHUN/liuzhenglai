@@ -11,6 +11,8 @@ export default {
 </script>
 
 <style lang="less">
+@import "common.less";
+
 * {
   margin: 0;
   padding: 0;
@@ -21,10 +23,15 @@ body {
   background: #f0f3f5;
 }
 
-.clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
+ul {
+  list-style: none;
+}
+
+.item-list {
+  .item {
+    &:extend(.card);
+    margin-bottom: 1em;
+  }
 }
 
 .container {

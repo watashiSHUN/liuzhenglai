@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 router.post('/posts', (req, res) => {
-    res.send([{ title: 1 }, { title: 2 }])
+    res.send([{ id: 1, title: 1 }, { id: 2, title: 2 }])
 })
 
 app.use('/api', router);
