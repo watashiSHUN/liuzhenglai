@@ -6,6 +6,16 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+window.store = {
+  state: {
+    posts: []
+  },
+  setPosts(posts) {
+    this.state.posts = posts
+  }
+}
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
