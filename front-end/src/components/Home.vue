@@ -67,7 +67,7 @@ export default {
 
       &.active,
       &.active:hover {
-        background-color: @brand-color;
+        background-color: @color-brand;
         color: #fff;
       }
 
@@ -99,7 +99,7 @@ export default {
       color: @text-color;
 
       &:hover .post-title {
-        color: @brand-color;
+        color: @color-brand;
       }
     }
 
@@ -107,7 +107,7 @@ export default {
       font-size: 1.5em;
       text-align: center;
       padding: @spacing-unit;
-      border-bottom: 1px solid @grey-color-light;
+      border-bottom: 1px solid @color-grey-light;
       -webkit-transition: color 0.2s ease-in-out;
       transition: color 0.2s ease-in-out;
     }
@@ -122,15 +122,15 @@ export default {
       top: 0;
       right: 0;
       font-size: @small-font-size;
-      color: @grey-color;
+      color: @color-grey;
       padding: 0.3em 1em;
-      box-shadow: inset 0 -1px 2px @grey-color-light;
+      box-shadow: inset 0 -1px 2px @color-grey-light;
       border-top-right-radius: @default-border-radius;
       border-bottom-left-radius: @default-border-radius;
     }
 
     .post-read-more {
-      color: @brand-color;
+      color: @color-brand;
       text-decoration: underline;
 
       &:hover {

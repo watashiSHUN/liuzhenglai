@@ -1,10 +1,11 @@
 @text-color: #333;
-@grey-color: #828282;
-@grey-color-light: lighten(@grey-color, 40%);
+@color-grey: #828282;
+@color-grey-light: lighten(@color-grey, 40%);
+@color-red: #f05458;
+@color-brand: #007cdc;
 @spacing-unit: 1em;
 @small-font-size: 0.8em;
 @default-border-radius: 0.5em;
-@brand-color: #007cdc;
 
 .clearfix:after {
   content: "";
@@ -17,4 +18,9 @@
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
   background-color: #fff;
   padding: @spacing-unit;
+}
+
+.btn,
+button {
+    cursor: pointer;
 }

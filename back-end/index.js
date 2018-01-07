@@ -4,6 +4,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 var router = express.Router();
 const app = express()
+const moment = require('moment')
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -37,8 +38,8 @@ PostSchema.set('toJSON', {
 const Post = mongoose.model('Post', PostSchema)
 
 router.post('/new_post', (req, res) => {
-    Post.create({ title: "123", content: "hhhh" }).then(p => {
-        console.log(p)
+    let time = moment().format("YYYY-MM-DD h:mm:ss a")
+    Post.create({ title: time, content: "Content" }).then(p => {
         res.send(p)
     })
 })
@@ -46,6 +47,14 @@ router.post('/new_post', (req, res) => {
 router.post('/delete_post', (req, res) => {
     Post.findOneAndRemove({ _id: req.body.params.postId }).then(post => {
         res.send(post)
+    })
+})
+
+router.post('/update_post', (req, res) => {
+    let post = req.body.params.post
+    Post.update({ _id: post.id }, post).then(r => {
+        console.log('update post', r)
+        res.send("DONE")
     })
 })
 

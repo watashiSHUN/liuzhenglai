@@ -30,6 +30,14 @@ body {
   background: #f0f3f5;
 }
 
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  outline: 0;
+}
+
 ul {
   list-style: none;
 }
