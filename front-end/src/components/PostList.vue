@@ -2,7 +2,7 @@
   <div class="post-list-page page">
     <div class="header">
       <div class="container">
-        <div class="site-title">Liu Zhenglai</div>
+        <a class="site-title" href="#/">Liu Zhenglai</a>
         <div class="nav">
           <a class="nav-item active">Post</a>
         </div>
@@ -17,7 +17,7 @@
                 {{ post.title }}
               </div>
               <div class="post-meta">{{ post.createdAtDate }}</div>
-              <div class="post-excerpt">{{ post.content }}</div>
+              <div class="post-excerpt" v-marked="post.content"></div>
             </a>
           </li>
         </ul>

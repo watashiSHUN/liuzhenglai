@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import moment from 'moment'
+import marked from 'marked'
 
 Vue.config.productionTip = false
 
@@ -50,6 +51,10 @@ window.store = {
     return this.state.posts[index + 1]
   }
 }
+
+Vue.directive('marked', (el, binding) => {
+  el.innerHTML = marked(binding.value || '')
+})
 
 
 /* eslint-disable no-new */

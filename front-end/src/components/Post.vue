@@ -2,7 +2,7 @@
     <div class="post-page page">
         <div class="header">
             <div class="container">
-                <div class="site-title">Liu Zhenglai</div>
+                <a class="site-title" href="#/">Liu Zhenglai</a>
                 <div class="nav">
                     <a class="nav-item active" href="#/posts">Post</a>
                 </div>
@@ -18,14 +18,15 @@
                     <div class="action-row">
                         <button class="btn btn-default btn-edit-post" @click="editPost(post)">Edit</button>
                     </div>
-                    <div class="post-title">
-                        {{post.title}}
+                    <div class="post-header">
+                        <div class="post-title">
+                            {{post.title}}
+                        </div>
+                        <div class="post-created-at">
+                            {{post.createdAtDate}}
+                        </div>
                     </div>
-                    <div class="post-created-at">
-                        {{post.createdAtDate}}
-                    </div>
-                    <div class="post-content">
-                        {{post.content}}
+                    <div class="post-content" v-marked="post.content">
                     </div>
                 </article>
                 <div class="clearfix post-post-nav">
@@ -40,6 +41,7 @@
 <script>
 import service from "../service";
 import moment from "moment";
+import marked from "marked";
 export default {
   data() {
     return {
@@ -144,14 +146,27 @@ export default {
     text-align: right;
   }
 
-  .post-title {
-    font-size: 2em;
-    text-align: center;
+  .post-header {
+    border-bottom: solid 1px @color-grey-light;
+    padding-bottom: 1em;
+    .post-title {
+      font-size: 2em;
+      text-align: center;
+    }
+    .post-created-at {
+      text-align: right;
+      font-size: 0.8em;
+      color: @color-grey;
+    }
   }
-  .post-created-at {
-    text-align: right;
-    font-size: 0.8em;
-    color: @color-grey;
+
+  .post-content {
+    padding-top: 1em;
+
+    blockquote {
+      border-left: 0.5em solid @color-grey;
+      background-color: @color-grey-light;
+    }
   }
 }
 </style>

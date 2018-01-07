@@ -13,7 +13,8 @@
             <div class="post-editor-column" v-if="activePost" @keydown.ctrl.83.prevent="savePost(activePost)">
                 <input type="text" class="post-title" v-model="activePost.title" placeholder="Write your post title here..." />
                 <div class="action-bar">
-                    <button class="btn btn-save" @click="savePost(activePost)">Save</button>
+                    <button class="btn btn-action btn-save" @click="savePost(activePost)">Save</button>
+                    <button class="btn btn-action btn-view" @click="viewPost(activePost)">View</button>
                 </div>
                 <textarea class="post-content" v-model="activePost.content" placeholder="Write your post here...">
                 </textarea>
@@ -34,7 +35,12 @@ export default {
   mounted() {
     service.getPosts().then(posts => {
       store.setPosts(posts);
-      this.loadPost(this.$route.params.postId);
+      let postId = this.$route.params.postId;
+      if (!postId && store.state.posts.length) {
+        this.navToPost(store.state.posts[0].id, true);
+      } else {
+        this.loadPost(postId);
+      }
     });
   },
   watch: {
@@ -54,17 +60,28 @@ export default {
         this.navToPost(nextActivePost ? nextActivePost.id : null);
       });
     },
-    navToPost(postId) {
-      this.$router.push({
+    navToPost(postId, replace) {
+      let params = {
         name: "Writer",
         params: { postId: postId }
-      });
+      };
+      if (replace) {
+        this.$router.replace(params);
+      } else {
+        this.$router.push(params);
+      }
     },
     loadPost(postId) {
       this.activePost = store.findPost(postId);
     },
     savePost(post) {
       service.updatePost(post);
+    },
+    viewPost(post) {
+      this.$router.push({
+        name: "Post",
+        params: { postId: post.id }
+      });
     }
   }
 };
@@ -90,12 +107,12 @@ export default {
 }
 .post-list-column {
   width: 15em;
-  border-right: solid 1px @color-grey;
+  border-right: solid 0.5em @color-grey-light;
   overflow: auto;
   .btn-new-post {
     text-align: center;
     padding: 1em;
-    border-bottom: solid 1px @color-grey;
+    border-bottom: solid 1px @color-grey-light;
     cursor: pointer;
   }
 
@@ -104,7 +121,7 @@ export default {
       padding: 1em;
       padding-left: 1.5em;
       box-shadow: inset 0 0 0 0 transparent;
-      border-bottom: 1px solid @color-grey;
+      border-bottom: 1px solid @color-grey-light;
       cursor: pointer;
       transition: box-shadow 0.15s ease-in-out;
 
@@ -143,7 +160,7 @@ export default {
   }
 
   .action-bar {
-    .btn-save {
+    .btn-action {
       border: 0;
       background-color: transparent;
       padding: 0.5em 1em;

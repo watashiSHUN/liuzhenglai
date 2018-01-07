@@ -7,69 +7,151 @@
 @spacing-unit: 1em;
 @small-font-size: 0.8em;
 @default-border-radius: 0.5em;
-
 .clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .card {
-  border-radius: @default-border-radius;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
-  background-color: #fff;
-  padding: @spacing-unit;
+    border-radius: @default-border-radius;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
+    background-color: #fff;
+    padding: @spacing-unit;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: @color-text;
 }
 
 .btn,
 button {
     cursor: pointer;
     appearance: none;
-
     &.btn-default {
-      border: 1px solid @color-grey-light;
-      padding: .5em 1em;
-      border-radius: 2em;
-      background-color: transparent;
-      color: @color-text-grey;
-      transition: color .15s ease-in-out, background-color .15s ease-in-out;
-
-      &:hover {
-        color: @color-text;
-        background-color: @color-grey-light;
-      }
+        border: 1px solid @color-grey-light;
+        padding: .5em 1em;
+        border-radius: 2em;
+        background-color: transparent;
+        color: @color-text-grey;
+        transition: color .15s ease-in-out, background-color .15s ease-in-out;
+        &:hover {
+            color: @color-text;
+            background-color: @color-grey-light;
+        }
     }
 }
 
 .header {
-  background-color: #fff;
-  .site-title,
-  .nav {
-    line-height: 3em;
-  }
-  .site-title {
-    float: left;
-    cursor: pointer;
-  }
-  .nav {
-    float: right;
-    a.nav-item {
-      color: #333;
-      text-decoration: none;
-      padding: 0 1em;
-      display: inline-block;
-      cursor: pointer;
-      transition: background-color 0.15s ease-in-out;
-
-      &.active,
-      &.active:hover {
-        background-color: @color-brand;
-        color: #fff;
-      }
-
-      &:hover {
-        background-color: #ddd;
-      }
+    background-color: #fff;
+    .site-title,
+    .nav-item {
+        line-height: 3em;
+        transition: background-color 0.15s ease-in-out;
+        padding: 0 1em;
+        &:hover {
+            background-color: @color-grey-light;
+        }
     }
-  }
+    .site-title {
+        float: left;
+    }
+    .nav {
+        float: right;
+        a.nav-item {
+            color: #333;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            &.active,
+            &.active:hover {
+                background-color: @color-brand;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.post {
+    h1 {
+        font-size: 1.6em;
+        border-bottom: dashed 1px #dfdfdf;
+        counter-increment: h1;
+        counter-reset: h2 0;
+    }
+    h1:before {
+        content: counter(h1) '. ';
+    }
+    h1:after {
+        content: '#';
+    }
+    h2 {
+        font-size: 1.4em;
+        border: none;
+        counter-increment: h2;
+        counter-reset: h3 0;
+    }
+    h2:before {
+        content: counter(h1) '.' counter(h2) '. ';
+    }
+    h2:after {
+        content: '##';
+    }
+    h3 {
+        font-size: 1.2em;
+        border: none;
+        counter-increment: h3;
+        counter-reset: h4 0;
+    }
+    h3:before {
+        content: counter(h1) '.' counter(h2) '.' counter(h3) '. ';
+    }
+    h3:after {
+        content: '###';
+    }
+    h4 {
+        font-size: 1.1em;
+        border: none;
+        counter-increment: h4;
+        counter-reset: h5 0;
+    }
+    h4:before {
+        content: counter(h1) '.' counter(h2) '.' counter(h3) '.' counter(h4) '. ';
+    }
+    h4:after {
+        content: '####';
+    }
+    h1:after,
+    h2:after,
+    h3:after,
+    h4:after {
+        color: #888;
+        position: relative;
+        left: .25em;
+        opacity: 0;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -ms-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+    }
+    h1:hover:after,
+    h2:hover:after,
+    h3:hover:after,
+    h4:hover:after {
+        left: .5em;
+        opacity: 1;
+    }
+    p+p {
+        margin-top: 1em;
+    }
+    blockquote {
+        color: @color-text-grey;
+        border-left: 0.5em solid @color-grey-light;
+        background-color: fade(@color-grey-light, 50%);
+        padding: 1em;
+        margin: .5em 0;
+    }
 }
