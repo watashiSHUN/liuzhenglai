@@ -10,12 +10,12 @@
                     </li>
                 </ul>
             </div>
-            <div class="post-editor-column" v-if="activePost">
-                <input type="text" class="post-title" v-model="activePost.title" />
+            <div class="post-editor-column" v-if="activePost" @keydown.ctrl.83.prevent="savePost(activePost)">
+                <input type="text" class="post-title" v-model="activePost.title" placeholder="Write your post title here..." />
                 <div class="action-bar">
                     <button class="btn btn-save" @click="savePost(activePost)">Save</button>
                 </div>
-                <textarea class="post-content" v-model="activePost.content">
+                <textarea class="post-content" v-model="activePost.content" placeholder="Write your post here...">
                 </textarea>
             </div>
         </div>
@@ -89,7 +89,7 @@ export default {
   height: 100%;
 }
 .post-list-column {
-  width: 10em;
+  width: 15em;
   border-right: solid 1px @color-grey;
   overflow: auto;
   .btn-new-post {
@@ -102,6 +102,7 @@ export default {
   .post-list {
     .post-item {
       padding: 1em;
+      padding-left: 1.5em;
       box-shadow: inset 0 0 0 0 transparent;
       border-bottom: 1px solid @color-grey;
       cursor: pointer;
@@ -115,6 +116,7 @@ export default {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        height: 1.5em;
       }
 
       .btn-delete-post {

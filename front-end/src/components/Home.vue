@@ -17,7 +17,7 @@
                 {{ post.title }}
               </div>
               <div class="post-meta">{{ post.time }}</div>
-              <div class="post-excerpt">{{ post.excerpt }}</div>
+              <div class="post-excerpt">{{ post.content }}</div>
             </a>
           </li>
         </ul>

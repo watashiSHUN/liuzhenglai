@@ -39,7 +39,7 @@ const Post = mongoose.model('Post', PostSchema)
 
 router.post('/new_post', (req, res) => {
     let time = moment().format("YYYY-MM-DD h:mm:ss a")
-    Post.create({ title: time, content: "Content" }).then(p => {
+    Post.create({ title: time }).then(p => {
         res.send(p)
     })
 })
