@@ -1,41 +1,41 @@
 <template>
-    <div class="post-page page">
-        <div class="header">
-            <div class="container">
-                <a class="site-title" href="#/">Liu Zhenglai</a>
-                <div class="nav">
-                    <a class="nav-item active" href="#/posts">Post</a>
-                </div>
-            </div>
+  <div class="post-page page">
+    <div class="header">
+      <div class="container">
+        <a class="site-title" href="#/">Liu Zhenglai</a>
+        <div class="nav">
+          <a class="nav-item active" href="#/posts">Post</a>
         </div>
-        <div class="body">
-            <div class="container" v-if="post">
-                <div class="clearfix pre-post-nav">
-                    <button class="prev-post" @click="navToPost(prevPost)" v-if="prevPost">Prev</button>
-                    <button class="next-post" @click="navToPost(nextPost)" v-if="nextPost">Next</button>
-                </div>
-                <article class="post">
-                    <div class="action-row">
-                        <button class="btn btn-default btn-edit-post" @click="editPost(post)">Edit</button>
-                    </div>
-                    <div class="post-header">
-                        <div class="post-title">
-                            {{post.title}}
-                        </div>
-                        <div class="post-created-at">
-                            {{post.createdAtDate}}
-                        </div>
-                    </div>
-                    <div class="post-content" v-marked="post.content">
-                    </div>
-                </article>
-                <div class="clearfix post-post-nav">
-                    <button class="prev-post" @click="navToPost(prevPost)" v-if="prevPost">Prev</button>
-                    <button class="next-post" @click="navToPost(nextPost)" v-if="nextPost">Next</button>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="body">
+      <div class="container" v-if="post">
+        <div class="clearfix pre-post-nav">
+          <button class="prev-post" @click="navToPost(prevPost)" v-if="prevPost">Prev</button>
+          <button class="next-post" @click="navToPost(nextPost)" v-if="nextPost">Next</button>
+        </div>
+        <article class="post">
+          <div class="action-row">
+            <button class="btn btn-default btn-edit-post" @click="editPost(post)">Edit</button>
+          </div>
+          <div class="post-header">
+            <div class="post-title">
+              {{post.title}}
+            </div>
+            <div class="post-created-at">
+              {{post.createdAtDate}}
+            </div>
+          </div>
+          <div class="post-content marked" v-marked="post.content">
+          </div>
+        </article>
+        <div class="clearfix post-post-nav">
+          <button class="prev-post" @click="navToPost(prevPost)" v-if="prevPost">Prev</button>
+          <button class="next-post" @click="navToPost(nextPost)" v-if="nextPost">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -162,11 +162,6 @@ export default {
 
   .post-content {
     padding-top: 1em;
-
-    blockquote {
-      border-left: 0.5em solid @color-grey;
-      background-color: @color-grey-light;
-    }
   }
 }
 </style>

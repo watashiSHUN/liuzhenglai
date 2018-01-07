@@ -17,7 +17,7 @@
                 {{ post.title }}
               </div>
               <div class="post-meta">{{ post.createdAtDate }}</div>
-              <div class="post-excerpt" v-marked="post.content"></div>
+              <div class="post-excerpt marked" v-marked="post.content"></div>
             </a>
           </li>
         </ul>
