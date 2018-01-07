@@ -71,7 +71,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "../common.less";
+@import "../less/common.less";
 
 .body {
   display: flex;

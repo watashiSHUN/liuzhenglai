@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page page">
+  <div class="post-list-page page">
     <div class="header">
       <div class="container">
         <div class="site-title">Liu Zhenglai</div>
@@ -10,13 +10,13 @@
     </div>
     <div class="body">
       <div class="container">
-        <ul class=" post-list item-list">
-          <li v-for="post in globalState.posts" :key="post.id" class="item">
+        <ul class="post-list item-list">
+          <li v-for="post in globalState.posts" :key="post.id" class="item" @click="navToPost(post.id)">
             <a class="post-link">
               <div class="post-title">
                 {{ post.title }}
               </div>
-              <div class="post-meta">{{ post.time }}</div>
+              <div class="post-meta">{{ post.createdAtDate }}</div>
               <div class="post-excerpt">{{ post.content }}</div>
             </a>
           </li>
@@ -28,55 +28,32 @@
 
 <script>
 import service from "../service";
+import moment from "moment";
 export default {
   data() {
     return {
-      globalState: store.state
+      globalState: store.state,
+      moment: moment
     };
   },
   mounted() {
     service.getPosts().then(posts => {
       store.setPosts(posts);
     });
+  },
+  methods: {
+    navToPost(postId) {
+      this.$router.push({
+        name: "Post",
+        params: { postId: postId }
+      });
+    }
   }
 };
 </script>
 
 <style scoped lang="less">
-@import "../common.less";
-
-.header {
-  background-color: #fff;
-  .site-title,
-  .nav {
-    line-height: 3em;
-  }
-  .site-title {
-    float: left;
-    cursor: pointer;
-  }
-  .nav {
-    float: right;
-    a.nav-item {
-      color: #333;
-      text-decoration: none;
-      padding: 0 1em;
-      display: inline-block;
-      cursor: pointer;
-      transition: background-color 0.15s ease-in-out;
-
-      &.active,
-      &.active:hover {
-        background-color: @color-brand;
-        color: #fff;
-      }
-
-      &:hover {
-        background-color: #ddd;
-      }
-    }
-  }
-}
+@import "../less/common.less";
 
 .body {
   padding-top: 1em;
@@ -96,7 +73,7 @@ export default {
       display: block;
       position: relative;
       text-decoration: none;
-      color: @text-color;
+      color: @color-text;
 
       &:hover .post-title {
         color: @color-brand;

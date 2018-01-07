@@ -1,0 +1,75 @@
+@color-grey: #828282;
+@color-grey-light: lighten(@color-grey, 40%);
+@color-text: #333;
+@color-text-grey: @color-grey;
+@color-red: #f05458;
+@color-brand: #007cdc;
+@spacing-unit: 1em;
+@small-font-size: 0.8em;
+@default-border-radius: 0.5em;
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.card {
+  border-radius: @default-border-radius;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
+  background-color: #fff;
+  padding: @spacing-unit;
+}
+
+.btn,
+button {
+    cursor: pointer;
+    appearance: none;
+
+    &.btn-default {
+      border: 1px solid @color-grey-light;
+      padding: .5em 1em;
+      border-radius: 2em;
+      background-color: transparent;
+      color: @color-text-grey;
+      transition: color .15s ease-in-out, background-color .15s ease-in-out;
+
+      &:hover {
+        color: @color-text;
+        background-color: @color-grey-light;
+      }
+    }
+}
+
+.header {
+  background-color: #fff;
+  .site-title,
+  .nav {
+    line-height: 3em;
+  }
+  .site-title {
+    float: left;
+    cursor: pointer;
+  }
+  .nav {
+    float: right;
+    a.nav-item {
+      color: #333;
+      text-decoration: none;
+      padding: 0 1em;
+      display: inline-block;
+      cursor: pointer;
+      transition: background-color 0.15s ease-in-out;
+
+      &.active,
+      &.active:hover {
+        background-color: @color-brand;
+        color: #fff;
+      }
+
+      &:hover {
+        background-color: #ddd;
+      }
+    }
+  }
+}

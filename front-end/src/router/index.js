@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
+import PostList from '@/components/PostList'
+import Post from '@/components/Post'
 import Writer from '@/components/Writer'
 
 Vue.use(Router)
@@ -8,9 +9,14 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'Home',
-      component: Home
+      path: '/posts',
+      name: 'PostList',
+      component: PostList
+    },
+    {
+      path: '/post/:postId',
+      name: 'Post',
+      component: Post
     },
     {
       path: '/writer/:postId?',
