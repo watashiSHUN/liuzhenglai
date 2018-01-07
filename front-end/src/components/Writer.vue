@@ -44,10 +44,15 @@ export default {
   },
   methods: {
     newPost() {
-      service.newPost();
+      service.newPost().then(post => {
+        this.navToPost(post.id);
+      });
     },
     deletePost(id) {
-      service.deletePost(id);
+      let nextActivePost = store.getNextActivePost(id);
+      service.deletePost(id).then(() => {
+        this.navToPost(nextActivePost ? nextActivePost.id : null);
+      });
     },
     navToPost(postId) {
       this.$router.push({
@@ -56,7 +61,6 @@ export default {
       });
     },
     loadPost(postId) {
-      if (!postId) return;
       this.activePost = store.findPost(postId);
     },
     savePost(post) {

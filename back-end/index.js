@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 router.post('/posts', (req, res) => {
-    Post.find({}, (err, posts) => {
+    Post.find().sort({ createdAt: -1 }).then(posts => {
         res.send(posts);
     })
 })

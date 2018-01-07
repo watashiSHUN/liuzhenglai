@@ -20,7 +20,18 @@ window.store = {
     this.state.posts.splice(this.state.posts.findIndex(p => p.id === postId), 1)
   },
   findPost(postId) {
+    if (!postId) return null
     return this.state.posts.find(p => p.id === postId)
+  },
+  getNextActivePost(postId) {
+    let index = this.state.posts.findIndex(p => p.id === postId)
+    if (index + 1 < this.state.posts.length) {
+      return this.state.posts[index + 1]
+    } else if (index - 1 >= 0) {
+      return this.state.posts[index - 1]
+    } else {
+      return null
+    }
   }
 }
 
