@@ -1,26 +1,20 @@
 <template>
-    <div class="writer-page page">
-        <div class="body">
-            <div class="post-list-column">
-                <div class="btn btn-new-post" @click="newPost">New Post</div>
-                <ul class="post-list">
-                    <li class="btn post-item" v-for="post in globalState.posts" :key="post.id" @click="navToPost(post.id)" :class="{ active: post.id === $route.params.postId }">
-                        <div class="post-title">{{ post.title }}</div>
-                        <div class="btn btn-delete-post" @click="deletePost(post.id)">x</div>
-                    </li>
-                </ul>
-            </div>
-            <div class="post-editor-column" v-if="activePost" @keydown.ctrl.83.prevent="savePost(activePost)">
-                <input type="text" class="post-title" v-model="activePost.title" placeholder="Write your post title here..." />
-                <div class="action-bar">
-                    <button class="btn btn-action btn-save" @click="savePost(activePost)">Save</button>
-                    <button class="btn btn-action btn-view" @click="viewPost(activePost)">View</button>
-                </div>
-                <textarea class="post-content" v-model="activePost.content" placeholder="Write your post here...">
-                </textarea>
-            </div>
-        </div>
+  <div class="writer-page page">
+    <div class="body">
+      <div class="post-list-column">
+        <div class="btn btn-new-post" @click="newPost">New Post</div>
+        <ul class="post-list">
+          <li class="btn post-item" v-for="post in globalState.posts" :key="post.id" @click="navToPost(post.id)" :class="{ active: post.id === $route.params.postId }">
+            <div class="post-title">{{ post.title }}</div>
+            <div class="btn btn-delete-post" @click="deletePost(post.id)">x</div>
+          </li>
+        </ul>
+      </div>
+      <div class="post-editor-column">
+        <post-editor v-bind:post="activePost"></post-editor>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -73,15 +67,6 @@ export default {
     },
     loadPost(postId) {
       this.activePost = store.findPost(postId);
-    },
-    savePost(post) {
-      service.updatePost(post);
-    },
-    viewPost(post) {
-      this.$router.push({
-        name: "Post",
-        params: { postId: post.id }
-      });
     }
   }
 };
@@ -149,35 +134,5 @@ export default {
 
 .post-editor-column {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-
-  input[type="text"].post-title {
-    font-size: 2em;
-    padding: 0.5em 1em;
-    border: 0;
-    appearance: none;
-  }
-
-  .action-bar {
-    .btn-action {
-      border: 0;
-      background-color: transparent;
-      padding: 0.5em 1em;
-      &:hover {
-        background-color: @color-grey;
-        color: #fff;
-      }
-    }
-  }
-
-  textarea.post-content {
-    padding: 0.5em 1em;
-    appearance: none;
-    border: 0;
-    resize: none;
-    overflow: auto;
-    flex: 1;
-  }
 }
 </style>

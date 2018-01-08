@@ -56,6 +56,8 @@ Vue.directive('marked', (el, binding) => {
   el.innerHTML = marked(binding.value || '')
 })
 
+// Register components
+Vue.component('post-editor', require('./components/PostEditor.vue').default)
 
 /* eslint-disable no-new */
 new Vue({

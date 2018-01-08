@@ -4,6 +4,7 @@ import PostList from '@/components/PostList'
 import Post from '@/components/Post'
 import Writer from '@/components/Writer'
 import Home from '@/components/Home'
+import LiveEditor from '@/components/LiveEditor'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/writer/:postId?',
       name: 'Writer',
       component: Writer
+    },
+    {
+      path: '/live/:postId',
+      name: 'LiveEditor',
+      component: LiveEditor
     }
   ]
 })
