@@ -10,4 +10,4 @@ app.use('/api', function(req, res) {
   req.pipe(request(url)).pipe(res);
 });
 
-app.listen(80, () => console.log('twinword listening on port 80!'))
+app.listen(80, () => console.log('listening on port 80!'))
