@@ -10,7 +10,11 @@ Vue.config.productionTip = false
 
 window.store = {
   state: {
-    posts: []
+    posts: [],
+    user: {
+      token: null,
+      nickname: null
+    }
   },
   setPosts(posts) {
     posts.forEach(p => p.createdAtDate = moment(p.createdAt).format('MMM D, YYYY'))
@@ -49,6 +53,9 @@ window.store = {
     let index = this.findPostIndex(postId)
     if (index === null || index + 1 >= this.state.posts.length) return null
     return this.state.posts[index + 1]
+  },
+  setUser(user) {
+    this.state.user.token = user.token;
   }
 }
 

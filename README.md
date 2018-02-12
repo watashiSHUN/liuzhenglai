@@ -3,6 +3,7 @@
 Liu Zhenglai's Blog
 
 # TODO
-- [ ] Display Posts
+- [x] Display Posts
+- [ ] Log in & Authentication
 - [ ] Paginate Posts
 - [ ] Doodle Page

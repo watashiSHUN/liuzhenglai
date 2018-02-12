@@ -6,17 +6,38 @@
 @color-brand: #007cdc;
 @spacing-unit: 1em;
 @small-font-size: 0.8em;
-@default-border-radius: 0.5em;
+@default-border-radius: 0.3em;
+:root {
+    --card-background-color: #fff;
+    --color-brand: @color-brand;
+    --btn-primary-text-color: #fff;
+    --input-border-color: #bdc7d8;
+}
+
+.night-mode {
+    --card-background-color: #333;
+    --color-brand: @color-brand;
+    --btn-primary-text-color: #fff;
+    --input-border-color: #fff;
+}
+
 .clearfix:after {
     content: "";
     display: table;
     clear: both;
 }
 
+.absolute-hv-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .card {
     border-radius: @default-border-radius;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
-    background-color: #fff;
+    background-color: var(--card-background-color);
     padding: @spacing-unit;
 }
 
@@ -30,9 +51,11 @@ a {
 button {
     cursor: pointer;
     appearance: none;
+    border: 0;
+    background-color: transparent;
+    padding: .5em 1em;
     &.btn-default {
         border: 1px solid @color-grey-light;
-        padding: .5em 1em;
         border-radius: 2em;
         background-color: transparent;
         color: @color-text-grey;
@@ -41,6 +64,12 @@ button {
             color: @color-text;
             background-color: @color-grey-light;
         }
+    }
+
+    &.btn-primary {
+        border-radius: 2em;
+        background-color: var(--color-brand);
+        color: var(--btn-primary-text-color);
     }
 }
 

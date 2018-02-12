@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 var router = express.Router();
 const app = express()
 const moment = require('moment')
+const User = require('./model/user-model')
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -27,14 +28,14 @@ var PostSchema = new Schema({
         type: String
     }]
 },
-{ timestamps: true })
+    { timestamps: true })
 PostSchema.set('toJSON', {
     transform: function (doc, ret, options) {
         ret.id = ret._id;
         delete ret._id;
         delete ret.__v;
     }
-}); 
+});
 const Post = mongoose.model('Post', PostSchema)
 
 router.post('/new_post', (req, res) => {
@@ -55,6 +56,25 @@ router.post('/update_post', (req, res) => {
     Post.update({ _id: post.id }, post).then(r => {
         console.log('update post', r)
         res.send("DONE")
+    })
+})
+
+router.post('/login', (req, res) => {
+    let user = req.body.params;
+
+    User.findOne({ username: user.username }, (err, target) => {
+        if (!target) {
+            res.send(null);
+        }
+        target.comparePassword(user.password, (err, isMatch) => {
+            if (err) throw err;
+            
+            if (isMatch) {
+                res.send({ token: target._id });
+            } else {
+                res.send(null);
+            }
+        })
     })
 })
 
