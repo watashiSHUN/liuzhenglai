@@ -1,11 +1,19 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-const bcrypt = require('bcrypt')
-const SALT_WORK_FACTOR = 10
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const bcrypt = require('bcrypt');
+const SALT_WORK_FACTOR = 10;
 
 var UserSchema = new Schema({
-    username: { type: String, required: true, index: { unique: true } },
-    password: { type: String, required: true }
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true
+    },
+    password: {
+        type: String,
+        required: true
+    }
 });
 
 UserSchema.pre('save', function (next) {
@@ -16,7 +24,6 @@ UserSchema.pre('save', function (next) {
         if (err) return next(err);
 
         // hash the password using our new salt
-        console.log(user)
         bcrypt.hash(user.password, salt, function (err, hash) {
             if (err) return next(err);
 

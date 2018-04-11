@@ -8,7 +8,8 @@
         Password:
         <input type="password" v-model="password">
       </label>
-      <button class="btn btn-primary" @click="logIn">Log In</button>
+      <div class="err" v-text="err"></div>
+      <button class="btn btn-primary" @click="logIn" :disabled="!username.trim() || !password">Log In</button>
     </form>
   </div>
 </template>
@@ -20,15 +21,22 @@ export default {
     return {
       globalState: store.state,
       username: "",
-      password: ""
+      password: "",
+      err: ""
     };
   },
   mounted() {},
   methods: {
     logIn() {
-      service.logIn(this.username, this.password).then(() => {
-        this.$router.push("/");
-      });
+      this.err = "";
+      service.logIn(this.username, this.password).then(
+        () => {
+          this.$router.push("/");
+        },
+        err => {
+          this.err = err.response.data;
+        }
+      );
     }
   }
 };
@@ -56,6 +64,11 @@ export default {
       border: 1px solid var(--input-border-color);
       border-radius: @default-border-radius;
     }
+  }
+
+  .err {
+    color: var(--color-error);
+    font-size: 0.8em;
   }
 
   .btn {

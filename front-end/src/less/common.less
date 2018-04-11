@@ -7,11 +7,14 @@
 @spacing-unit: 1em;
 @small-font-size: 0.8em;
 @default-border-radius: 0.3em;
+@color-disabled: #888;
 :root {
     --card-background-color: #fff;
     --color-brand: @color-brand;
     --btn-primary-text-color: #fff;
     --input-border-color: #bdc7d8;
+    --color-error: @color-red;
+    --color-disabled: @color-disabled;
 }
 
 .night-mode {
@@ -19,6 +22,8 @@
     --color-brand: @color-brand;
     --btn-primary-text-color: #fff;
     --input-border-color: #fff;
+    --color-error: @color-red;
+    --color-disabled: @color-disabled;
 }
 
 .clearfix:after {
@@ -65,11 +70,16 @@ button {
             background-color: @color-grey-light;
         }
     }
-
     &.btn-primary {
         border-radius: 2em;
         background-color: var(--color-brand);
         color: var(--btn-primary-text-color);
+
+        &.disabled,
+        &:disabled {
+            background-color: var(--color-disabled);
+            cursor: default;
+        }
     }
 }
 
