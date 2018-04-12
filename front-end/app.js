@@ -1,12 +1,12 @@
 const express = require('express');
-var request = require('request');
+const request = require('request');
 const app = express();
 
 app.use(express.static('dist'));
 
-var apiUrl = 'http://localhost:3000/api';
+const API_URL = 'http://localhost:3000/api';
 app.use('/api', function(req, res) {
-  var url = apiUrl + req.url;
+  let url = API_URL + req.url;
   req.pipe(request(url)).pipe(res);
 });
 
