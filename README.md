@@ -29,7 +29,8 @@ $ nodemon
 ## Front-end
 ```
 $ cd front-end
-$ npm run build
-$ cd dist
-$ http-server -p 80
+$ node app
 ```
+
+## Back-end
+Same as **Dev - Back-end**.

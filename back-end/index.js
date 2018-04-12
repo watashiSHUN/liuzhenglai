@@ -39,6 +39,10 @@ PostSchema.set('toJSON', {
 });
 const Post = mongoose.model('Post', PostSchema)
 
+router.get('/ping', (req, res) => {
+    res.send('Hi');
+});
+
 router.post('/new_post', (req, res) => {
     let time = moment().format("YYYY-MM-DD h:mm:ss a")
     Post.create({ title: time }).then(p => {
