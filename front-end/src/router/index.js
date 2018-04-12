@@ -1,13 +1,14 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import PostList from '@/components/PostList'
-import Post from '@/components/Post'
-import Writer from '@/components/Writer'
-import Home from '@/components/Home'
-import LiveEditor from '@/components/LiveEditor'
-import LogIn from '@/components/LogIn'
+import Vue from 'vue';
+import Router from 'vue-router';
+import PostList from '@/components/PostList';
+import Post from '@/components/Post';
+import Writer from '@/components/Writer';
+import Home from '@/components/Home';
+import LiveEditor from '@/components/LiveEditor';
+import LogIn from '@/components/LogIn';
+import SignUp from '@/components/SignUp';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -40,6 +41,11 @@ export default new Router({
       path: '/login',
       name: 'LogIn',
       component: LogIn
+    },
+    {
+      path: '/signUp',
+      name: 'SignUp',
+      component: SignUp
     }
   ]
-})
+});

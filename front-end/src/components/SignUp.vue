@@ -1,6 +1,6 @@
 <template>
-  <div class="login-page page">
-    <form class="login-panel card absolute-hv-center">
+  <div class="sign-up-page page">
+    <form class="sign-up-panel card absolute-hv-center">
       <label>Email:
         <input type="email" v-model="email">
       </label>
@@ -9,7 +9,7 @@
         <input type="password" v-model="password">
       </label>
       <div class="err" v-text="err"></div>
-      <button class="btn btn-primary" @click="logIn" :disabled="!email.trim() || !password">Log In</button>
+      <button class="btn btn-primary" @click="signUp" :disabled="!email.trim() || !password">Sign Up</button>
     </form>
   </div>
 </template>
@@ -27,9 +27,9 @@ export default {
   },
   mounted() {},
   methods: {
-    logIn() {
+    signUp() {
       this.err = "";
-      service.logIn(this.email, this.password).then(
+      service.signUp(this.email, this.password).then(
         () => {
           this.$router.push("/");
         },
@@ -45,7 +45,7 @@ export default {
 <style scoped lang="less">
 @import "../less/common.less";
 
-.login-panel {
+.sign-up-panel {
   width: 15em;
 
   label {

@@ -12,7 +12,7 @@ export default {
             .then(res => res.data);
     },
     newPost() {
-        return sendPost('/new_post')
+        return sendPost('/new-post')
             .then(res => {
                 let post = res.data;
                 store.newPost(post);
@@ -20,7 +20,7 @@ export default {
             });
     },
     deletePost(postId) {
-        return sendPost('/delete_post', { postId })
+        return sendPost('/delete-post', { postId })
             .then(res => {
                 let post = res.data;
                 store.deletePost(post.id);
@@ -28,10 +28,15 @@ export default {
             });
     },
     updatePost(post) {
-        return sendPost('/update_post', { post });
+        return sendPost('/update-post', { post });
     },
-    logIn(username, password) {
-        return sendPost('/login', { username, password }).then((res) => {
+    logIn(email, password) {
+        return sendPost('/login', { email, password }).then((res) => {
+            store.setUser({ token: res.data });
+        });
+    },
+    signUp(email, password) {
+        return sendPost('/sign-up', { email, password }).then((res) => {
             store.setUser({ token: res.data });
         });
     }
