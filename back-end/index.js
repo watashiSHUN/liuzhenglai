@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 var router = express.Router();
 const app = express()
 const moment = require('moment');
-const User = require('./model/user-model');
+const User = require('./model/user');
+const Post = require('./model/post');
 const HttpStatus = require('./http-status-code');
 
 app.use(cors());
@@ -20,24 +21,6 @@ router.post('/posts', (req, res) => {
 
 mongoose.connect('mongodb://localhost:27017');
 mongoose.Promise = require('bluebird');
-var Schema = mongoose.Schema
-
-var PostSchema = new Schema({
-    title: String,
-    content: String,
-    tags: [{
-        type: String
-    }]
-},
-    { timestamps: true })
-PostSchema.set('toJSON', {
-    transform: function (doc, ret, options) {
-        ret.id = ret._id;
-        delete ret._id;
-        delete ret.__v;
-    }
-});
-const Post = mongoose.model('Post', PostSchema)
 
 router.get('/ping', (req, res) => {
     res.send('Hi');
