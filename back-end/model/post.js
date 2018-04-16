@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let PostSchema = new Schema({
+    auther: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     title: String,
     content: String,
     tags: [{

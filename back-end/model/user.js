@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
+const HttpStatus = require('../http-status-code');
 const SALT_WORK_FACTOR = 10;
 
 var UserSchema = new Schema({
@@ -32,13 +33,32 @@ UserSchema.pre('save', function (next) {
             next();
         });
     });
-})
+});
 
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+UserSchema.methods.comparePassword = function (candidatePassword, cb) {
+    bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
     });
+};
+
+UserSchema.statics.authenticate = function (email, password, callback) {
+    User.findOne({ email: email }).exec((err, user) => {
+        if (err) {
+            return callback(err);
+        } else if (!user) {
+            let err = new Error('User not found');
+            err.status = HttpStatus.UNAUTHORIZED;
+            return callback(err);
+        }
+        bcrypt.compare(password, user.password, (err, result) => {
+            if (result) {
+                return callback(null, user);
+            } else {
+                return callback();
+            }
+        })
+    })
 }
 
 module.exports = mongoose.model('User', UserSchema);

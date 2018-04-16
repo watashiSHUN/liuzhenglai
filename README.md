@@ -2,12 +2,6 @@
 
 Liu Zhenglai's Blog
 
-# TODO
-- [x] Display Posts
-- [ ] Log in & Authentication
-- [ ] Paginate Posts
-- [ ] Doodle Page
-
 # Dev
 
 ## Front-end
@@ -34,3 +28,10 @@ $ node app
 
 ## Back-end
 Same as **Dev - Back-end**.
+
+# TODO
+- [x] Display Posts
+- [ ] Log in & Authentication
+- [ ] Paginate Posts
+- [ ] Doodle Page
+- [ ] Validate email and password

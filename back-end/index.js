@@ -27,23 +27,22 @@ router.get('/ping', (req, res) => {
 });
 
 router.post('/new-post', (req, res) => {
-    let time = moment().format("YYYY-MM-DD h:mm:ss a")
+    let time = moment().format("YYYY-MM-DD h:mm:ss a");
     Post.create({ title: time }).then(p => {
-        res.send(p)
+        res.send(p);
     });
 });
 
 router.post('/delete-post', (req, res) => {
     Post.findOneAndRemove({ _id: req.body.params.postId }).then(post => {
-        res.send(post)
+        res.send(post);
     });
 });
 
 router.post('/update-post', (req, res) => {
-    let post = req.body.params.post
+    let post = req.body.params.post;
     Post.update({ _id: post.id }, post).then(r => {
-        console.log('update post', r)
-        res.send("DONE")
+        res.send("DONE");
     });
 });
 
