@@ -17,6 +17,7 @@ var UserSchema = new Schema({
     }
 });
 
+// Encrypt password before saving
 UserSchema.pre('save', function (next) {
     let user = this;
 
@@ -43,7 +44,7 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
 };
 
 UserSchema.statics.authenticate = function (email, password, callback) {
-    User.findOne({ email: email }).exec((err, user) => {
+    User.findOne({ email }).exec((err, user) => {
         if (err) {
             return callback(err);
         } else if (!user) {

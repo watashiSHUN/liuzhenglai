@@ -3,16 +3,24 @@ import axios from 'axios';
 const backendUrl = '/api';
 
 function sendPost(url, params) {
-    return axios.post(backendUrl + url, { params });
+    return axios.post(backendUrl + url, params);
+}
+
+function authPost(url, params) {
+    return axios.post(backendUrl + url, params, {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getJson('token')
+        }
+    });
 }
 
 export default {
     getPosts() {
-        return sendPost('/posts')
+        return authPost('/posts')
             .then(res => res.data);
     },
     newPost() {
-        return sendPost('/new-post')
+        return authPost('/new-post')
             .then(res => {
                 let post = res.data;
                 store.newPost(post);
@@ -20,24 +28,22 @@ export default {
             });
     },
     deletePost(postId) {
-        return sendPost('/delete-post', { postId })
+        return authPost('/delete-post', { postId })
             .then(res => {
-                let post = res.data;
-                store.deletePost(post.id);
-                return post;
+                store.deletePost(postId);
             });
     },
     updatePost(post) {
-        return sendPost('/update-post', { post });
+        return authPost('/update-post', { post });
     },
     logIn(email, password) {
         return sendPost('/login', { email, password }).then((res) => {
-            store.setUser({ token: res.data });
+            localStorage.setJson('token', res.data.token);
         });
     },
     signUp(email, password) {
         return sendPost('/sign-up', { email, password }).then((res) => {
-            store.setUser({ token: res.data });
+            localStorage.setJson('token', res.data.token);
         });
     }
 }
