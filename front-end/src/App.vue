@@ -25,11 +25,6 @@ body,
   height: 100%;
 }
 
-body {
-  font-family: "Microsoft Yahei", sans-serif;
-  background: #f0f3f5;
-}
-
 input,
 textarea,
 select,

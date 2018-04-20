@@ -73,7 +73,7 @@ export default {
       display: block;
       position: relative;
       text-decoration: none;
-      color: @color-text;
+      color: var(--text-color);
 
       &:hover .post-title {
         color: @color-brand;
@@ -83,7 +83,7 @@ export default {
     .post-title {
       font-size: 1.5em;
       text-align: center;
-      padding: @spacing-unit;
+      padding: @space-md;
       border-bottom: 1px solid @color-grey-light;
       -webkit-transition: color 0.2s ease-in-out;
       transition: color 0.2s ease-in-out;
@@ -91,7 +91,7 @@ export default {
 
     .post-excerpt {
       font-size: 0.8em;
-      padding: @spacing-unit;
+      padding: @space-md;
     }
 
     .post-meta {
@@ -99,7 +99,7 @@ export default {
       top: 0;
       right: 0;
       font-size: @small-font-size;
-      color: @color-grey;
+      color: var(--secondary-text-color);
       padding: 0.3em 1em;
       box-shadow: inset 0 -1px 2px @color-grey-light;
       border-top-right-radius: @default-border-radius;
