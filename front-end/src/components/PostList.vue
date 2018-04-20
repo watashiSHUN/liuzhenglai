@@ -84,7 +84,7 @@ export default {
       font-size: 1.5em;
       text-align: center;
       padding: @space-md;
-      border-bottom: 1px solid @color-grey-light;
+      border-bottom: 1px solid var(--border-color);
       -webkit-transition: color 0.2s ease-in-out;
       transition: color 0.2s ease-in-out;
     }

@@ -1,17 +1,17 @@
 <template>
-    <div class="live-editor-page page">
-        <div class="body">
-            <div class="post-editor-column">
-                <post-editor v-bind:post="post"></post-editor>
-            </div>
-            <div class="preview-column">
-                <div class="preview" v-if="post">
-                    <div class="preview-title">{{ post.title }}</div>
-                    <div class="preview-content marked" v-marked="post.content"></div>
-                </div>
-            </div>
+  <div class="live-editor-page page">
+    <div class="body">
+      <div class="post-editor-column">
+        <post-editor v-bind:post="post"></post-editor>
+      </div>
+      <div class="preview-column">
+        <div class="preview" v-if="post">
+          <div class="preview-title">{{ post.title }}</div>
+          <div class="preview-content marked" v-marked="post.content"></div>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -48,7 +48,8 @@ export default {
 
   .preview-column {
     background-color: #fff;
-    border-left: 1px solid @color-grey-light;
+    border-left: 1px solid var(--border-color);
+    overflow: auto;
 
     .preview-title {
       font-size: 2em;
