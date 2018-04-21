@@ -34,7 +34,8 @@ Same as **Dev - Back-end**.
 - [x] Log in & Authentication
 - [x] Anonymous user can view my posts
 - [x] hide edit if visiter is not author
-- [ ] back to top button
+- [x] back to top button
+- [ ] learn vue transition; refine back to top button
 - [ ] Sign out
 - [ ] Paginate Posts
 - [ ] Doodle Page

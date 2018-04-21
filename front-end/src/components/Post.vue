@@ -10,6 +10,7 @@
     </div>
     <div class="body">
       <div class="container" v-if="post">
+        <button class="btn-back-top" @click="backTop">^</button>
         <div class="clearfix pre-post-nav">
           <button class="prev-post" @click="navToPost(prevPost)" v-if="prevPost">Prev</button>
           <button class="next-post" @click="navToPost(nextPost)" v-if="nextPost">Next</button>
@@ -87,6 +88,19 @@ export default {
         name: "Writer",
         params: { postId: post.id }
       });
+    },
+    backTop() {
+      let elem = document.documentElement;
+      let top = elem.scrollTop;
+
+      let timer = setInterval(function() {
+        top -= Math.abs(top * 0.3);
+        if (top <= 1) {
+          top = 0;
+          clearInterval(timer);
+        }
+        elem.scrollTop = top;
+      }, 20);
     }
   }
 };
@@ -97,6 +111,15 @@ export default {
 
 .body {
   padding: @space-xl 0;
+}
+
+.btn-back-top {
+  position: fixed;
+  right: @space-xxl;
+  bottom: @space-xxl;
+  background-color: var(--card-background-color);
+  width: 3em;
+  height: 3em;
 }
 
 .prev-post,
