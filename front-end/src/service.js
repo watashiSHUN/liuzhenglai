@@ -15,8 +15,12 @@ function authPost(url, params) {
 }
 
 export default {
-    getPosts() {
-        return authPost('/posts')
+    getPosts(userId) {
+        return sendPost('/posts', { userId })
+            .then(res => res.data);
+    },
+    getPost(postId) {
+        return sendPost('/post', { postId })
             .then(res => res.data);
     },
     newPost() {

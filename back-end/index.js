@@ -21,9 +21,10 @@ jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 jwtOptions.secretOrKey = 'liuzhenglai';
 
 const strategy = new JwtStrategy(jwtOptions, function (payload, done) {
-    User.findOne({ _id: payload.id }, (err, user) => {
+    let id = payload.id;
+    User.findById(id, (err, user) => {
         if (user) {
-            done(null, user);
+            done(null, { id });
         } else {
             done(null, false);
         }
@@ -54,19 +55,28 @@ router.get('/ping', (req, res) => {
 const authenticator = passport.authenticate('jwt', { session: false });
 router.post(
     '/posts',
-    authenticator,
     (req, res) => {
-    Post.find().sort({ createdAt: -1 }).then(posts => {
-        res.send(posts);
-    });
-});
+        Post.find({ author: req.body.userId }).sort({ createdAt: -1 }).then(posts => {
+            res.send(posts);
+        });
+    }
+);
+
+router.post(
+    '/post',
+    (req, res) => {
+        Post.findById(req.body.postId).then(post => {
+            res.send(post);
+        });
+    }
+)
 
 router.post(
     '/new-post',
     authenticator,
     (req, res) => {
         let time = moment().format('YYYY-MM-DD h:mm:ss a');
-        Post.create({ title: time }).then(p => {
+        Post.create({ title: time, author: req.user.id }).then(p => {
             res.send(p);
         });
     }
@@ -76,8 +86,8 @@ router.post(
     '/delete-post',
     authenticator,
     (req, res) => {
-        Post.findOneAndRemove({ _id: req.body.postId }).then(post => {
-            res.send({ message: 'successful' });
+        Post.findByIdAndRemove(req.body.postId).then(post => {
+            res.json({ message: 'ok' });
         });
     }
 );
@@ -87,7 +97,7 @@ router.post('/update-post',
     (req, res) => {
         let post = req.body.post;
         Post.update({ _id: post.id }, post).then(r => {
-            res.send('DONE');
+            res.json({ message: 'ok' });
         });
     }
 );

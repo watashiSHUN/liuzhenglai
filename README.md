@@ -31,7 +31,9 @@ Same as **Dev - Back-end**.
 
 # TODO
 - [x] Display Posts
-- [ ] Log in & Authentication
+- [x] Log in & Authentication
+- [x] Anonymous user can view my posts
+- [ ] Sign out
 - [ ] Paginate Posts
 - [ ] Doodle Page
 - [ ] Validate email and password

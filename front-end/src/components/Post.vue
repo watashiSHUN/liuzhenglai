@@ -53,9 +53,9 @@ export default {
     };
   },
   mounted() {
-    service.getPosts().then(posts => {
-      store.setPosts(posts);
-      this.loadPost(this.$route.params.postId);
+    service.getPost(this.$route.params.postId).then(post => {
+      console.log(post);
+      this.loadPost(post);
     });
   },
   watch: {
@@ -70,10 +70,11 @@ export default {
         params: { postId: postId }
       });
     },
-    loadPost(postId) {
-      this.post = store.findPost(postId);
-      this.prevPost = store.findPrevPost(postId);
-      this.nextPost = store.findNextPost(postId);
+    loadPost(post) {
+      this.post = post;
+      // this.post = store.findPost(postId);
+      // this.prevPost = store.findPrevPost(postId);
+      // this.nextPost = store.findNextPost(postId);
     },
     navToPost(post) {
       if (!post) return;
@@ -96,7 +97,7 @@ export default {
 @import "../less/common.less";
 
 .body {
-  padding-top: 2em;
+  padding: @space-xl 0;
 }
 
 .prev-post,

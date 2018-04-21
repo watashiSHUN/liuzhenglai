@@ -37,7 +37,7 @@ export default {
     };
   },
   mounted() {
-    service.getPosts().then(posts => {
+    service.getPosts(this.$route.params.userId).then(posts => {
       store.setPosts(posts);
     });
   },
