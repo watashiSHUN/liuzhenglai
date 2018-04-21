@@ -5,7 +5,7 @@ import Post from '@/components/Post';
 import Writer from '@/components/Writer';
 import Home from '@/components/Home';
 import LiveEditor from '@/components/LiveEditor';
-import LogIn from '@/components/LogIn';
+import SignIn from '@/components/SignIn';
 import SignUp from '@/components/SignUp';
 
 Vue.use(Router);
@@ -38,9 +38,9 @@ export default new Router({
       component: LiveEditor
     },
     {
-      path: '/login',
-      name: 'LogIn',
-      component: LogIn
+      path: '/SignIn',
+      name: 'SignIn',
+      component: SignIn
     },
     {
       path: '/signUp',

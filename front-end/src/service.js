@@ -45,8 +45,8 @@ export default {
     updatePost(post) {
         return authPost('/update-post', { post });
     },
-    logIn(email, password) {
-        return sendPost('/login', { email, password }).then((res) => {
+    signIn(email, password) {
+        return sendPost('/sign-in', { email, password }).then((res) => {
             updateToken(res);
         });
     },

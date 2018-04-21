@@ -108,7 +108,7 @@ function signTokenBack(id, res) {
     res.json({ message: 'ok', token: token });
 }
 
-router.post('/login', (req, res) => {
+router.post('/sign-in', (req, res) => {
     let email = req.body.email;
     let password = req.body.password;
 

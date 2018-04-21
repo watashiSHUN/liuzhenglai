@@ -27,7 +27,7 @@ export default {
     };
   },
   mounted() {
-    service.getPosts().then(posts => {
+    service.getPosts(store.state.user.id).then(posts => {
       store.setPosts(posts);
       let postId = this.$route.params.postId;
       if (!postId && store.state.posts.length) {

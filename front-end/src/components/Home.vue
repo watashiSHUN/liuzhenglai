@@ -3,8 +3,12 @@
         <div class="header">
             <div class="container">
                 <a class="site-title" href="#/">Liu Zhenglai</a>
-                <div class="nav">
-                    <a class="nav-item" href="#/posts">Post</a>
+                <div class="nav" v-if="!globalState.user.id">
+                    <a class="nav-item" href="#/signIn">Sign in</a>
+                </div>
+                <div class="nav" v-else>
+                    <a class="nav-item" :href="`#/posts/${globalState.user.id}`">Post</a>
+                    <a class="nav-item" @click="signOut">Sign out</a>
                 </div>
             </div>
         </div>
@@ -30,7 +34,12 @@ export default {
     };
   },
   mounted() {},
-  methods: {}
+  methods: {
+    signOut() {
+      localStorage.removeItem("token");
+      store.state.user.id = null;
+    }
+  }
 };
 </script>
 
