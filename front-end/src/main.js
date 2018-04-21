@@ -16,12 +16,27 @@ Storage.prototype.getJson = function (key) {
 
 Vue.config.productionTip = false;
 
+function getUserId() {
+  let token = localStorage.getJson('token');
+  if (!token) {
+      return undefined;
+  }
+
+  let parts = token.split('.');
+  if (parts.length !== 3) {
+      return undefined;
+  }
+
+  let payload = parts[1];
+  let json = JSON.parse(atob(payload));
+  return json && json.id;
+}
+
 window.store = {
   state: {
     posts: [],
     user: {
-      token: null,
-      nickname: null
+      userId: null
     }
   },
   setPosts(posts) {
@@ -61,8 +76,13 @@ window.store = {
     let index = this.findPostIndex(postId);
     if (index === null || index + 1 >= this.state.posts.length) return null;
     return this.state.posts[index + 1];
+  },
+  updateUserId(){
+    this.state.user.id = getUserId();
   }
 };
+
+store.updateUserId();
 
 Vue.directive('marked', (el, binding) => {
   el.innerHTML = marked(binding.value || '');

@@ -14,6 +14,11 @@ function authPost(url, params) {
     });
 }
 
+function updateToken(res) {
+    localStorage.setJson('token', res.data.token);
+    store.updateUserId();
+}
+
 export default {
     getPosts(userId) {
         return sendPost('/posts', { userId })
@@ -42,12 +47,12 @@ export default {
     },
     logIn(email, password) {
         return sendPost('/login', { email, password }).then((res) => {
-            localStorage.setJson('token', res.data.token);
+            updateToken(res);
         });
     },
     signUp(email, password) {
         return sendPost('/sign-up', { email, password }).then((res) => {
-            localStorage.setJson('token', res.data.token);
+            updateToken(res);
         });
     }
 }

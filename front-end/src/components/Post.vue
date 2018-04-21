@@ -16,7 +16,7 @@
         </div>
         <article class="post">
           <div class="action-row">
-            <button class="btn btn-default btn-edit-post" @click="editPost(post)">Edit</button>
+            <button class="btn btn-default btn-edit-post" @click="editPost(post)" v-if="globalState.user.id === post.author">Edit</button>
           </div>
           <div class="post-header">
             <div class="post-title">
@@ -54,7 +54,6 @@ export default {
   },
   mounted() {
     service.getPost(this.$route.params.postId).then(post => {
-      console.log(post);
       this.loadPost(post);
     });
   },
