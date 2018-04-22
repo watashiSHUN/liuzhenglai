@@ -2,10 +2,10 @@
   <div class="writer-page page">
     <div class="body">
       <div class="post-list-column">
-        <div class="btn btn-action btn-block" @click="backHome">Back Home</div>
-        <div class="btn btn-action btn-block" @click="newPost">New Post</div>
+        <div class="btn btn-action display-block" @click="backHome">Back Home</div>
+        <div class="btn btn-action display-block" @click="newPost">New Post</div>
         <ul class="post-list">
-          <li class="btn post-item btn-block" v-for="post in globalState.posts" :key="post.id" @click="navToPost(post.id)" :class="{ active: post.id === $route.params.postId }">
+          <li class="btn post-item display-block" v-for="post in globalState.posts" :key="post.id" @click="navToPost(post.id)" :class="{ active: post.id === $route.params.postId }">
             <div class="post-title">{{ post.title }}</div>
             <div class="btn btn-delete-post" @click="deletePost(post.id)">x</div>
           </li>
@@ -111,7 +111,7 @@ export default {
       box-shadow: inset 0 0 0 0 transparent;
       border-bottom: 1px solid @color-grey-light;
       cursor: pointer;
-      transition: box-shadow 0.15s ease-in-out;
+      transition: box-shadow @anim-duration-short ease-in-out;
 
       &.active {
         box-shadow: inset 0.5em 0 0 0 @color-brand;

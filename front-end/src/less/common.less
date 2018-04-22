@@ -17,12 +17,15 @@
 @secondary-text-color: @color-grey;
 @nav-menu-z-index: 100;
 @float-button-z-index: 99;
+@anim-duration-short: .15s;
 :root {
     --nav-background-color: #fff;
     --card-background-color: #fff;
     --color-brand: @color-brand;
     --btn-primary-text-color: #fff;
     --input-border-color: #bdc7d8;
+    --input-focus-border-color: #80bdff;
+    --input-focus-box-shadow-color: rgba(0,123,255,.25);
     --color-error: @color-red;
     --color-disabled: @color-disabled;
     --border-color: @color-grey-light;
@@ -31,6 +34,7 @@
     --background-color: @background-color;
     --tab-button-background-color: #f4f4f4;
     --tab-button-active-background-color: #fff;
+    --focus-box-shadow-color: rgba(0,123,255,.5);
 }
 
 .night-mode {
@@ -39,6 +43,8 @@
     --color-brand: @color-brand;
     --btn-primary-text-color: #fff;
     --input-border-color: #fff;
+    --input-focus-border-color: #80bdff;
+    --input-focus-box-shadow-color: rgba(0,123,255,.25);
     --color-error: @color-red;
     --color-disabled: @color-disabled;
     --border-color: @color-grey-light;
@@ -47,6 +53,7 @@
     --background-color: #191919;
     --tab-button-background-color: #f4f4f4;
     --tab-button-active-background-color: #fff;
+    --focus-box-shadow-color: rgba(0,123,255,.5);
 }
 
 body {
@@ -85,11 +92,27 @@ a {
     color: var(--text-color);
 }
 
+label {
+    display: inline-block;
+}
+
 img.avatar {
     border-radius: 100%;
     width: 2em;
     height: 2em;
     display: inline-block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: @space-sm;
+  border: 1px solid var(--input-border-color);
+  border-radius: @default-border-radius;
+  &:focus {
+      border-color: var(--input-focus-border-color);
+      box-shadow: 0 0 0 @space-xs var(--input-focus-box-shadow-color);
+  }
 }
 
 .btn,
@@ -105,7 +128,7 @@ button {
         border-radius: 2em;
         background-color: transparent;
         color: var(--secondary-text-color);
-        transition: color .15s ease-in-out, background-color .15s ease-in-out;
+        transition: color @anim-duration-short ease-in-out, background-color @anim-duration-short ease-in-out;
         &:hover {
             color: var(--text-color);
             background-color: @color-grey-light;
@@ -123,8 +146,24 @@ button {
     }
 }
 
-.btn-block {
+.display-block {
     display: block;
+}
+
+.flex-h {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-v {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-grow {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
 }
 
 .marked {
@@ -184,11 +223,7 @@ button {
         position: relative;
         left: @space-xs;
         opacity: 0;
-        -webkit-transition: all 0.3s ease-out;
-        -moz-transition: all 0.3s ease-out;
-        -ms-transition: all 0.3s ease-out;
-        -o-transition: all 0.3s ease-out;
-        transition: all 0.3s ease-out;
+        transition: all @anim-duration-short ease-out;
     }
     h1:hover:after,
     h2:hover:after,

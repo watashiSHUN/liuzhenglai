@@ -12,8 +12,8 @@
         <a class="nav-item" @click="menuActive = !menuActive">
           <img class="avatar" :src="globalState.user.avatar" />
           <div class="nav-menu card popover" :class="{ active: menuActive }">
-            <a class="btn btn-block" href="#/settings">Settings</a>
-            <div class="btn btn-block" @click="signOut">Sign Out</div>
+            <a class="btn display-block" href="#/settings">Settings</a>
+            <div class="btn display-block" @click="signOut">Sign Out</div>
           </div>
         </a>
       </div>
@@ -51,7 +51,7 @@ export default {
   }
   .site-title,
   .nav-item {
-    transition: background-color 0.15s ease-in-out;
+    transition: background-color @anim-duration-short ease-in-out;
     padding: 0 @space-md;
     height: 100%;
     display: flex;

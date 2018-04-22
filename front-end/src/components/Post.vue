@@ -124,7 +124,7 @@ export default {
   background-color: #fafafa;
   border-radius: 0.3em;
   padding: 0.5em 1em;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color @anim-duration-short ease-in-out;
   text-decoration: none;
   appearance: none;
   border: 0;

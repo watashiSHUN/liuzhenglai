@@ -55,8 +55,7 @@ export default {
 .post-list {
   > li.item {
     padding: 0;
-    -webkit-transition: box-shadow 0.2s ease-in-out;
-    transition: box-shadow 0.2s ease-in-out;
+    transition: box-shadow @anim-duration-short ease-in-out;
 
     &:hover {
       box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.06);

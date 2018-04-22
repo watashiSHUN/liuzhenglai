@@ -128,13 +128,8 @@ export default {
     input[type="email"],
     input[type="password"] {
       display: block;
-      margin: 0.2em 0;
+      margin: @space-xs 0;
       width: 100%;
-      box-sizing: border-box;
-
-      padding: 0.5em;
-      border: 1px solid var(--input-border-color);
-      border-radius: @default-border-radius;
     }
   }
 

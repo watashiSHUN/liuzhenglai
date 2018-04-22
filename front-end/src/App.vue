@@ -16,6 +16,7 @@ export default {
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html,
@@ -31,6 +32,10 @@ select,
 button {
   font-family: inherit;
   outline: 0;
+  transition: box-shadow @anim-duration-short ease-in-out;
+  &:focus {
+    box-shadow: 0 0 0 @space-xs var(--focus-box-shadow-color);
+  }
 }
 
 ul {
