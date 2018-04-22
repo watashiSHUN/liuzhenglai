@@ -3,7 +3,7 @@
     <site-header></site-header>
     <div class="body">
       <div class="container" v-if="post">
-        <button class="btn-back-top" @click="backTop">^</button>
+        <button class="btn-back-top popover" @click="backTop">^</button>
         <div class="clearfix pre-post-nav">
           <button class="prev-post" @click="navToPost(prevPost)" v-if="prevPost">Prev</button>
           <button class="next-post" @click="navToPost(nextPost)" v-if="nextPost">Next</button>
@@ -113,6 +113,8 @@ export default {
   background-color: var(--card-background-color);
   width: 3em;
   height: 3em;
+  z-index: @float-button-z-index;
+  border-radius: @default-border-radius;
 }
 
 .prev-post,

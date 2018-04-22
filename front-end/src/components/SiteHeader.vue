@@ -11,7 +11,7 @@
         <a class="nav-item" href="#/writer">New Post</a>
         <a class="nav-item" @click="menuActive = !menuActive">
           <img class="avatar" :src="globalState.user.avatar" />
-          <div class="nav-menu card" :class="{ active: menuActive }">
+          <div class="nav-menu card popover" :class="{ active: menuActive }">
             <a class="btn btn-block" href="#/settings">Settings</a>
             <div class="btn btn-block" @click="signOut">Sign Out</div>
           </div>
@@ -90,7 +90,6 @@ export default {
     padding: @space-xs 0;
     background-color: var(--nav-background-color);
     z-index: @nav-menu-z-index;
-    box-shadow: 0 0 @space-xs rgba(0, 0, 0, 0.1);
     &.active {
       display: block;
     }
