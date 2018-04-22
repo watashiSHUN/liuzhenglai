@@ -57,7 +57,11 @@ export default {
           this.$router.replace(`/posts/${store.state.user.id}`);
         },
         err => {
-          this.err = err.response.data;
+          if (err.response) {
+            this.err = err.response.data;
+          } else {
+            this.err = err.message;
+          }
         }
       );
     },
@@ -68,7 +72,11 @@ export default {
           this.$router.push("/");
         },
         err => {
-          this.err = err.response.data;
+          if (err.response) {
+            this.err = err.response.data;
+          } else {
+            this.err = err.message;
+          }
         }
       );
     },

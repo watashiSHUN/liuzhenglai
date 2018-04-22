@@ -7,8 +7,11 @@ const app = express()
 const moment = require('moment');
 const User = require('./model/user');
 const Post = require('./model/post');
+// const File = require('./model/file');
 const HttpStatus = require('./http-status-code');
 const jwt = require('jsonwebtoken');
+const multer  = require('multer');
+const avatarUpload = multer({ dest: 'public/avatar/' });
 
 // Setup passport strategy
 const passport = require('passport');
@@ -102,8 +105,8 @@ router.post('/update-post',
     }
 );
 
-function signTokenBack(id, res) {
-    let payload = { id };
+function signTokenBack(user, res) {
+    let payload = { id: user.id, avatar: user.avatar };
     let token = jwt.sign(payload, jwtOptions.secretOrKey);
     res.json({ message: 'ok', token: token });
 }
@@ -127,7 +130,7 @@ router.post('/sign-in', (req, res) => {
             if (err) throw err;
 
             if (isMatch) {
-                signTokenBack(user.id, res);
+                signTokenBack(user, res);
             } else {
                 res.status(HttpStatus.UNAUTHORIZED).send('Wrong Password');
             }
@@ -151,10 +154,22 @@ router.post('/sign-up', (req, res) => {
         }
 
         User.create({ email, password }).then(user => {
-            signTokenBack(user.id, res);
+            signTokenBack(user, res);
         });
     });
 });
 
+router.post('/upload-avatar',
+    authenticator,
+    avatarUpload.single('avatar'),
+    (req, res) => {
+        // Set { new: true } to return the updated one, rather than the original one.
+        User.findByIdAndUpdate(req.user.id, { avatar: req.file.path }, { new: true }).then(user => {
+            signTokenBack(user, res);
+        });
+    }
+);
+
+app.use(express.static('public'));
 app.use('/api', router);
 app.listen(3000, () => console.log('liuzhenglai.com listening on port 3000!'));

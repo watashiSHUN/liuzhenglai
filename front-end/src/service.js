@@ -1,22 +1,19 @@
 import axios from 'axios';
 
-const backendUrl = '/api';
+const backendApiUrl = '/api';
 
-function sendPost(url, params) {
-    return axios.post(backendUrl + url, params);
+function sendPost(url, params, config) {
+    return axios.post(backendApiUrl + url, params, config);
 }
 
-function authPost(url, params) {
-    return axios.post(backendUrl + url, params, {
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getJson('token')
-        }
-    });
+function authPost(url, params, _config) {
+    let config = Object.assign({ headers: {} }, _config);
+    config.headers.Authorization = 'Bearer ' + localStorage.getJson('token');
+    return axios.post(backendApiUrl + url, params, config);
 }
 
 function updateToken(res) {
-    localStorage.setJson('token', res.data.token);
-    store.updateUserId();
+    store.updateToken(res.data.token);
 }
 
 export default {
@@ -52,6 +49,16 @@ export default {
     },
     signUp(email, password) {
         return sendPost('/sign-up', { email, password }).then((res) => {
+            updateToken(res);
+        });
+    },
+    uploadAvatar(avatar) {
+        let data = new FormData();
+        data.append('avatar', avatar);
+        return authPost('/upload-avatar', data, {
+            headers: { 'content-type': 'multipart/form-data' }
+        })
+        .then((res) => {
             updateToken(res);
         });
     }

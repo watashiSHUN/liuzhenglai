@@ -4,10 +4,17 @@ let Schema = mongoose.Schema;
 let PostSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,
+        required: true,
         ref: 'User'
     },
-    title: String,
-    content: String,
+    title: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    content: {
+        type: String
+    },
     tags: [{
         type: String
     }]

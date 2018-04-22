@@ -15,6 +15,7 @@
 @background-color: #f0f2f4;
 @text-color: #333;
 @secondary-text-color: @color-grey;
+@nav-menu-z-index: 100;
 :root {
     --nav-background-color: #fff;
     --card-background-color: #fff;
@@ -52,6 +53,7 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
 }
+
 .clearfix:after {
     content: "";
     display: block;
@@ -78,8 +80,16 @@ a {
     color: var(--text-color);
 }
 
+img.avatar {
+    border-radius: 100%;
+    width: 2em;
+    height: 2em;
+    display: inline-block;
+}
+
 .btn,
 button {
+    display: inline-block;
     cursor: pointer;
     appearance: none;
     border: 0;
@@ -108,34 +118,8 @@ button {
     }
 }
 
-.header {
-    background-color: var(--nav-background-color);
-    .site-title,
-    .nav-item {
-        line-height: 3em;
-        transition: background-color 0.15s ease-in-out;
-        padding: 0 @space-md;
-        &:hover {
-            background-color: @color-grey-light;
-        }
-    }
-    .site-title {
-        float: left;
-    }
-    .nav {
-        float: right;
-        a.nav-item {
-            color: var(--text-color);
-            text-decoration: none;
-            display: inline-block;
-            cursor: pointer;
-            &.active,
-            &.active:hover {
-                background-color: @color-brand;
-                color: #fff;
-            }
-        }
-    }
+.btn-block {
+    display: block;
 }
 
 .marked {
@@ -261,12 +245,10 @@ button {
             border-top: solid 1px var(--border-color);
         }
     }
-
     img {
         max-width: 100%;
         vertical-align: middle;
         border-radius: @default-border-radius;
         border: .3em solid var(--border-color);
     }
-    
 }

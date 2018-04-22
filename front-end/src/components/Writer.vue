@@ -2,10 +2,10 @@
   <div class="writer-page page">
     <div class="body">
       <div class="post-list-column">
-        <div class="btn btn-action" @click="backHome">Back Home</div>
-        <div class="btn btn-action" @click="newPost">New Post</div>
+        <div class="btn btn-action btn-block" @click="backHome">Back Home</div>
+        <div class="btn btn-action btn-block" @click="newPost">New Post</div>
         <ul class="post-list">
-          <li class="btn post-item" v-for="post in globalState.posts" :key="post.id" @click="navToPost(post.id)" :class="{ active: post.id === $route.params.postId }">
+          <li class="btn post-item btn-block" v-for="post in globalState.posts" :key="post.id" @click="navToPost(post.id)" :class="{ active: post.id === $route.params.postId }">
             <div class="post-title">{{ post.title }}</div>
             <div class="btn btn-delete-post" @click="deletePost(post.id)">x</div>
           </li>

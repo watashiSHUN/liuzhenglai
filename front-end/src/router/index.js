@@ -6,6 +6,7 @@ import Writer from '@/components/Writer';
 import Home from '@/components/Home';
 import LiveEditor from '@/components/LiveEditor';
 import Sign from '@/components/Sign';
+import Settings from '@/components/Settings';
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/sign/:tab',
       name: 'Sign',
       component: Sign
+    },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: Settings
     }
   ]
 });

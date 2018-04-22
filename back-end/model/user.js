@@ -14,6 +14,14 @@ var UserSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    avatar: {
+        type: String
+    },
+    name: {
+        type: String,
+        // required: true,
+        trim: true
     }
 });
 
@@ -43,23 +51,23 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
     });
 };
 
-UserSchema.statics.authenticate = function (email, password, callback) {
-    User.findOne({ email }).exec((err, user) => {
-        if (err) {
-            return callback(err);
-        } else if (!user) {
-            let err = new Error('User not found');
-            err.status = HttpStatus.UNAUTHORIZED;
-            return callback(err);
-        }
-        bcrypt.compare(password, user.password, (err, result) => {
-            if (result) {
-                return callback(null, user);
-            } else {
-                return callback();
-            }
-        })
-    })
-}
+// UserSchema.statics.authenticate = function (email, password, callback) {
+//     User.findOne({ email }).exec((err, user) => {
+//         if (err) {
+//             return callback(err);
+//         } else if (!user) {
+//             let err = new Error('User not found');
+//             err.status = HttpStatus.UNAUTHORIZED;
+//             return callback(err);
+//         }
+//         bcrypt.compare(password, user.password, (err, result) => {
+//             if (result) {
+//                 return callback(null, user);
+//             } else {
+//                 return callback();
+//             }
+//         })
+//     })
+// }
 
 module.exports = mongoose.model('User', UserSchema);

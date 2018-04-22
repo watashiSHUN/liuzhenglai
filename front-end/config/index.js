@@ -11,7 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': 'http://localhost:3000' // Forward all requests `/api/*` to `localhost:3000/api/*`.
+      '/api': 'http://localhost:3000', // Forward all requests `/api/*` to `localhost:3000/api/*`.
+      '/public': { // Forward all requests `/public/*` to `localhost:3000/*`.
+        target: 'http://localhost:3000',
+        pathRewrite: {'^/public' : '' }
+      } 
     },
 
     // Various Dev Server settings
