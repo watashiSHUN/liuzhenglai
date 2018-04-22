@@ -5,8 +5,7 @@ import Post from '@/components/Post';
 import Writer from '@/components/Writer';
 import Home from '@/components/Home';
 import LiveEditor from '@/components/LiveEditor';
-import SignIn from '@/components/SignIn';
-import SignUp from '@/components/SignUp';
+import Sign from '@/components/Sign';
 
 Vue.use(Router);
 
@@ -38,14 +37,9 @@ export default new Router({
       component: LiveEditor
     },
     {
-      path: '/SignIn',
-      name: 'SignIn',
-      component: SignIn
-    },
-    {
-      path: '/signUp',
-      name: 'SignUp',
-      component: SignUp
+      path: '/sign/:tab',
+      name: 'Sign',
+      component: Sign
     }
   ]
 });

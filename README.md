@@ -36,7 +36,7 @@ Same as **Dev - Back-end**.
 - [x] hide edit if visiter is not author
 - [x] back to top button
 - [x] for anonymous user, show sign in.
-- [ ] merge sign in and sign up.
+- [x] merge sign in and sign up.
 - [ ] extract header as a component
 - [ ] learn vue transition; refine back to top button
 - [ ] Sign out
