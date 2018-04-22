@@ -1,13 +1,6 @@
 <template>
   <div class="post-page page">
-    <div class="header">
-      <div class="container">
-        <a class="site-title" href="#/">Liu Zhenglai</a>
-        <div class="nav">
-          <a class="nav-item active" href="#/posts">Post</a>
-        </div>
-      </div>
-    </div>
+    <site-header></site-header>
     <div class="body">
       <div class="container" v-if="post">
         <button class="btn-back-top" @click="backTop">^</button>

@@ -90,6 +90,7 @@ Vue.directive('marked', (el, binding) => {
 
 // Register components
 Vue.component('post-editor', require('./components/PostEditor.vue').default);
+Vue.component('site-header', require('./components/SiteHeader.vue').default);
 
 /* eslint-disable no-new */
 new Vue({

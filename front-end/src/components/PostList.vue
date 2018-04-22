@@ -1,13 +1,6 @@
 <template>
   <div class="post-list-page page">
-    <div class="header">
-      <div class="container">
-        <a class="site-title" href="#/">Liu Zhenglai</a>
-        <div class="nav">
-          <a class="nav-item active">Post</a>
-        </div>
-      </div>
-    </div>
+    <site-header></site-header>
     <div class="body">
       <div class="container">
         <ul class="post-list item-list">
