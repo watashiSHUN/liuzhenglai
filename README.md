@@ -38,6 +38,7 @@ Same as **Dev - Back-end**.
 - [x] for anonymous user, show sign in.
 - [x] merge sign in and sign up.
 - [x] extract header as a component
+- [ ] add avatar
 - [ ] profile page
 - [ ] learn vue transition; refine back to top button
 - [ ] Sign out

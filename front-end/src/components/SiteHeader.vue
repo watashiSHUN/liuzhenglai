@@ -8,6 +8,7 @@
       </div>
       <div class="nav" v-else>
         <a class="nav-item" :href="`#/posts/${globalState.user.id}`">Post</a>
+        <a class="nav-item" href="#/writer">New Post</a>
         <a class="nav-item" @click="signOut">Sign out</a>
       </div>
     </div>
@@ -25,7 +26,7 @@ export default {
   methods: {
     signOut() {
       localStorage.removeItem("token");
-      store.state.user.id = null;
+      store.reset();
       this.$router.push("/");
     }
   }

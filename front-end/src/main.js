@@ -19,12 +19,12 @@ Vue.config.productionTip = false;
 function getUserId() {
   let token = localStorage.getJson('token');
   if (!token) {
-      return undefined;
+    return undefined;
   }
 
   let parts = token.split('.');
   if (parts.length !== 3) {
-      return undefined;
+    return undefined;
   }
 
   let payload = parts[1];
@@ -77,8 +77,12 @@ window.store = {
     if (index === null || index + 1 >= this.state.posts.length) return null;
     return this.state.posts[index + 1];
   },
-  updateUserId(){
+  updateUserId() {
     this.state.user.id = getUserId();
+  },
+  reset() {
+    this.state.posts = [];
+    this.user.id = null;
   }
 };
 

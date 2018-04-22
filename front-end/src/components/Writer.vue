@@ -2,7 +2,8 @@
   <div class="writer-page page">
     <div class="body">
       <div class="post-list-column">
-        <div class="btn btn-new-post" @click="newPost">New Post</div>
+        <div class="btn btn-action" @click="backHome">Back Home</div>
+        <div class="btn btn-action" @click="newPost">New Post</div>
         <ul class="post-list">
           <li class="btn post-item" v-for="post in globalState.posts" :key="post.id" @click="navToPost(post.id)" :class="{ active: post.id === $route.params.postId }">
             <div class="post-title">{{ post.title }}</div>
@@ -67,6 +68,9 @@ export default {
     },
     loadPost(postId) {
       this.activePost = store.findPost(postId);
+    },
+    backHome() {
+      this.$router.push("/");
     }
   }
 };
@@ -94,11 +98,10 @@ export default {
   width: 15em;
   border-right: solid 0.5em @color-grey-light;
   overflow: auto;
-  .btn-new-post {
+  .btn-action {
     text-align: center;
     padding: 1em;
     border-bottom: solid 1px @color-grey-light;
-    cursor: pointer;
   }
 
   .post-list {
