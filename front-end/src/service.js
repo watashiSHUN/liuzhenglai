@@ -45,8 +45,8 @@ export default {
     signIn(email, password) {
         return sendPost('/sign-in', { email, password }).then(updateToken);
     },
-    signUp(email, password) {
-        return sendPost('/sign-up', { email, password }).then(updateToken);
+    signUp(name, email, password) {
+        return sendPost('/sign-up', { name, email, password }).then(updateToken);
     },
     uploadAvatar(avatar) {
         let data = new FormData();

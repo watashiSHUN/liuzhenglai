@@ -5,6 +5,7 @@ import App from './App';
 import router from './router';
 import moment from 'moment';
 import marked from 'marked';
+import base64url from 'base64url';
 
 Storage.prototype.setJson = function (key, val) {
   this.setItem(key, JSON.stringify(val));
@@ -28,7 +29,7 @@ function getToken() {
   }
 
   let payload = parts[1];
-  return JSON.parse(atob(payload));
+  return JSON.parse(base64url.decode(payload));
 }
 
 window.store = {
@@ -90,7 +91,7 @@ window.store = {
     }
     
     this.state.user.id = payload.id;
-    this.state.user.avatar = payload.avatar;
+    this.state.user.avatar = payload.avatar || '/static/user.svg';
     this.state.user.email = payload.email;
     this.state.user.name = payload.name;
   },

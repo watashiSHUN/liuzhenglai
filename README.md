@@ -39,6 +39,7 @@ Same as **Dev - Back-end**.
 - [x] merge sign in and sign up.
 - [x] extract header as a component
 - [x] add avatar
+- [x] add name to sign up and settings
 - [ ] delete out dated avatar
 - [ ] add author info to post
 - [ ] learn bson and store files in bson

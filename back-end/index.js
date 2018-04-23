@@ -138,11 +138,16 @@ router.post('/sign-in', (req, res) => {
     });
 });
 
+function trim(str) {
+    return str && str.trim();
+}
+
 router.post('/sign-up', (req, res) => {
-    let email = req.body.email;
+    let name = trim(req.body.name);
+    let email = trim(req.body.email);
     let password = req.body.password;
 
-    if (!email || !password) {
+    if (!name || !email || !password) {
         res.status(HttpStatus.BAD_REQUEST).send('Email/password is invalid');
         return;
     }
@@ -153,7 +158,7 @@ router.post('/sign-up', (req, res) => {
             return;
         }
 
-        User.create({ email, password }).then(user => {
+        User.create({ name, email, password }).then(user => {
             signTokenBack(user, res);
         });
     });

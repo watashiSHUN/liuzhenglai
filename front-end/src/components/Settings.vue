@@ -5,17 +5,17 @@
       <div class="container flex-h">
         <div class="flex-grow">
           <label class="display-block form-group">
-            <div class="title">Name</div>
+            <div class="form-title">Name</div>
             <input type="text" v-model="globalState.user.name" class="form-control" />
           </label>
           <label class="display-block form-group">
-            <div class="title">Email</div>
+            <div class="form-title">Email</div>
             <input type="email" v-model="globalState.user.email" class="form-control" disabled/>
           </label>
           <button class="btn btn-primary display-block" @click="updateProfile">Update Profile</button>
         </div>
-        <label class="flex-v upload-avatar">
-          <div class="title">Profile Picture</div>
+        <label class="flex-v upload-avatar form-group">
+          <div class="form-title">Profile Picture</div>
           <img class="avatar" :src="globalState.user.avatar" />
           <label class="btn btn-primary file-chooser">
             <span>
@@ -24,7 +24,6 @@
             <input type="file" accept=".jpg, .jpeg, .png" @change="uploadAvatar">
           </label>
         </label>
-
       </div>
     </div>
   </div>
@@ -61,7 +60,7 @@ export default {
   margin: 0 @space-lg;
 
   img.avatar {
-    margin-bottom: @space-sm;
+    margin-bottom: @space-md;
     width: 10em;
     height: 10em;
   }
@@ -83,17 +82,17 @@ export default {
   }
 }
 
-label {
-  .title {
+.form-group {
+  margin: @space-md 0;
+  .form-title {
     margin-bottom: @space-sm;
+  }
+  .form-control {
+    width: 100%;
   }
 }
 
-.form-group {
-  margin: @space-sm 0;
-  .form-control {
-    width: 25em;
-    max-width: 100%;
-  }
+.form-group.display-block {
+  width: 25em;
 }
 </style>

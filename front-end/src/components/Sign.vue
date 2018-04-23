@@ -19,6 +19,10 @@
       </form>
       <form class="tab-content sign-panel" :class="{ active: activeTabIndex === 1 }">
         <label>
+          Name:
+          <input type="text" v-model="name">
+        </label>
+        <label>
           Email:
           <input type="email" v-model="email">
         </label>
@@ -27,7 +31,7 @@
           <input type="password" v-model="password">
         </label>
         <div class="err" v-text="err"></div>
-        <button class="btn btn-primary" @click="signUp" :disabled="!email.trim() || !password">Sign Up</button>
+        <button class="btn btn-primary" @click="signUp" :disabled="!name.trim() || !email.trim() || !password">Sign Up</button>
       </form>
     </div>
   </div>
@@ -41,6 +45,7 @@ export default {
       globalState: store.state,
       email: "",
       password: "",
+      name: "",
       err: ""
     };
   },
@@ -67,7 +72,7 @@ export default {
     },
     signUp() {
       this.err = "";
-      service.signUp(this.email, this.password).then(
+      service.signUp(this.name, this.email, this.password).then(
         () => {
           this.$router.push("/");
         },
@@ -125,6 +130,7 @@ export default {
     display: block;
     margin: 0.5em 0;
 
+    input[type="text"],
     input[type="email"],
     input[type="password"] {
       display: block;

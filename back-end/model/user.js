@@ -20,7 +20,7 @@ var UserSchema = new Schema({
     },
     name: {
         type: String,
-        // required: true,
+        required: true,
         trim: true
     }
 });
@@ -50,24 +50,5 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
         cb(null, isMatch);
     });
 };
-
-// UserSchema.statics.authenticate = function (email, password, callback) {
-//     User.findOne({ email }).exec((err, user) => {
-//         if (err) {
-//             return callback(err);
-//         } else if (!user) {
-//             let err = new Error('User not found');
-//             err.status = HttpStatus.UNAUTHORIZED;
-//             return callback(err);
-//         }
-//         bcrypt.compare(password, user.password, (err, result) => {
-//             if (result) {
-//                 return callback(null, user);
-//             } else {
-//                 return callback();
-//             }
-//         })
-//     })
-// }
 
 module.exports = mongoose.model('User', UserSchema);
