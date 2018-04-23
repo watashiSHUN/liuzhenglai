@@ -91,6 +91,8 @@ window.store = {
     
     this.state.user.id = payload.id;
     this.state.user.avatar = payload.avatar;
+    this.state.user.email = payload.email;
+    this.state.user.name = payload.name;
   },
   reset() {
     this.state.posts = [];

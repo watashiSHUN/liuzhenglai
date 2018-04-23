@@ -29,7 +29,8 @@ body,
 input,
 textarea,
 select,
-button {
+button,
+.btn {
   font-family: inherit;
   outline: 0;
   transition: box-shadow @anim-duration-short ease-in-out;

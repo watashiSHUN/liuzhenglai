@@ -43,14 +43,10 @@ export default {
         return authPost('/update-post', { post });
     },
     signIn(email, password) {
-        return sendPost('/sign-in', { email, password }).then((res) => {
-            updateToken(res);
-        });
+        return sendPost('/sign-in', { email, password }).then(updateToken);
     },
     signUp(email, password) {
-        return sendPost('/sign-up', { email, password }).then((res) => {
-            updateToken(res);
-        });
+        return sendPost('/sign-up', { email, password }).then(updateToken);
     },
     uploadAvatar(avatar) {
         let data = new FormData();
@@ -58,8 +54,9 @@ export default {
         return authPost('/upload-avatar', data, {
             headers: { 'content-type': 'multipart/form-data' }
         })
-        .then((res) => {
-            updateToken(res);
-        });
+        .then(updateToken);
+    },
+    updateProfile() {
+        return authPost('/update-profile', { name: store.state.user.name }).then(updateToken);
     }
 }

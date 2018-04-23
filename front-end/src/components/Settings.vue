@@ -10,7 +10,7 @@
           </label>
           <label class="display-block form-group">
             <div class="title">Email</div>
-            <input type="email" v-model="globalState.user.email" class="form-control" />
+            <input type="email" v-model="globalState.user.email" class="form-control" disabled/>
           </label>
           <button class="btn btn-primary display-block" @click="updateProfile">Update Profile</button>
         </div>
@@ -40,7 +40,9 @@ export default {
   },
   mounted() {},
   methods: {
-    updateProfile() {},
+    updateProfile() {
+      service.updateProfile();
+    },
     uploadAvatar(e) {
       service.uploadAvatar(e.target.files[0]);
     }

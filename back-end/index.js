@@ -10,7 +10,7 @@ const Post = require('./model/post');
 // const File = require('./model/file');
 const HttpStatus = require('./http-status-code');
 const jwt = require('jsonwebtoken');
-const multer  = require('multer');
+const multer = require('multer');
 const avatarUpload = multer({ dest: 'public/avatar/' });
 
 // Setup passport strategy
@@ -106,7 +106,7 @@ router.post('/update-post',
 );
 
 function signTokenBack(user, res) {
-    let payload = { id: user.id, avatar: user.avatar };
+    let payload = { id: user.id, avatar: user.avatar, email: user.email, name: user.name };
     let token = jwt.sign(payload, jwtOptions.secretOrKey);
     res.json({ message: 'ok', token: token });
 }
@@ -159,12 +159,23 @@ router.post('/sign-up', (req, res) => {
     });
 });
 
-router.post('/upload-avatar',
+router.post(
+    '/upload-avatar',
     authenticator,
     avatarUpload.single('avatar'),
     (req, res) => {
         // Set { new: true } to return the updated one, rather than the original one.
         User.findByIdAndUpdate(req.user.id, { avatar: req.file.path }, { new: true }).then(user => {
+            signTokenBack(user, res);
+        });
+    }
+);
+
+router.post(
+    '/update-profile',
+    authenticator,
+    (req, res) => {
+        User.findByIdAndUpdate(req.user.id, { name: req.body.name }, { new: true }).then(user => {
             signTokenBack(user, res);
         });
     }
