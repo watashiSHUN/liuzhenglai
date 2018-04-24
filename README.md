@@ -1,4 +1,5 @@
 # liuzhenglaichn.com
+[![Build Status](https://travis-ci.org/lzl124631x/liuzhenglai.svg?branch=master)](https://travis-ci.org/lzl124631x/liuzhenglai)
 
 Liu Zhenglai's Blog
 
