@@ -1,0 +1,4 @@
+language: node_js
+before_script: cd front-end
+node_js:
+  - "node"
