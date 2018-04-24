@@ -1,4 +1,7 @@
 language: node_js
-before_install: cd front-end
 node_js:
   - "node"
+env:
+  - TEST_DIR=front-end
+  - TEST_DIR=back-end
+script: cd $TEST_DIR && npm install && npm test
