@@ -4,6 +4,7 @@ node_js:
 env:
   - TEST_DIR=front-end
   - TEST_DIR=back-end
+  - CXX=g++-4.8
 # https://github.com/travis-ci/travis-ci/issues/4771#issuecomment-241439984
 addons:
   apt:
