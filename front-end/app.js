@@ -10,10 +10,10 @@ app.use('/api', (req, res) => {
   req.pipe(request(url)).pipe(res);
 });
 
-app.use('/ping', (req, res) => {
-  res.send('pong');
-});
-
 let PORT = process.env.PORT || 80;
+
+app.use('/ping', (req, res) => {
+  res.send(`pong at ${PORT}`);
+});
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}!`));
