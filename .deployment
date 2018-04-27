@@ -1,2 +1,3 @@
 [config]
-command = cd front-end & npm install & npm start
+project = front-end
+command = npm install & npm start
