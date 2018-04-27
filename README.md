@@ -41,6 +41,8 @@ Same as **Dev - Back-end**.
 - [x] extract header as a component
 - [x] add avatar
 - [x] add name to sign up and settings
+- [ ] in prod, `/public` requests are not forwarded.
+- [ ] stopping back-end will break front-end
 - [ ] delete out dated avatar
 - [ ] add author info to post
 - [ ] learn bson and store files in bson
