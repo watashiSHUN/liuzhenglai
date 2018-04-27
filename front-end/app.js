@@ -14,4 +14,6 @@ app.use('/ping', (req, res) => {
   res.send('pong');
 });
 
-app.listen(80, () => console.log('listening on port 80!'));
+let PORT = process.env.PORT || 80;
+
+app.listen(PORT, () => console.log(`listening on port ${PORT}!`));
