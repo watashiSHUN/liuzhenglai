@@ -1,3 +1,2 @@
 [config]
-[config]
-project = front-end
+command = deploy.cmd
