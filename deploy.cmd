@@ -98,14 +98,19 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 call :SelectNodeVersion
 
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
+  echo Found package.json
   pushd "%DEPLOYMENT_TARGET%"
   :: 3. Install npm packages
+  echo Running `npm install`
   call :ExecuteCmd !NPM_CMD! install --production
   IF !ERRORLEVEL! NEQ 0 goto error
 
   :: 4. npm start
+  echo Running `npm start`
   call :ExecuteCmd !NPM_CMD! start --production
   IF !ERRORLEVEL! NEQ 0 goto error
+
+  echo DONE!
   popd
 )
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
