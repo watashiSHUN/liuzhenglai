@@ -97,22 +97,20 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 :: 2. Select node version
 call :SelectNodeVersion
 
+:: 3. Install npm packages
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
-  echo Found package.json
   pushd "%DEPLOYMENT_TARGET%"
-  :: 3. Install npm packages
-  echo Running `npm install`
-  call :ExecuteCmd !NPM_CMD! install --production
+  call :ExecuteCmd !NPM_CMD! install
   IF !ERRORLEVEL! NEQ 0 goto error
-
-  :: 4. npm start
-  echo Running `npm start`
-  call :ExecuteCmd !NPM_CMD! start --production
-  IF !ERRORLEVEL! NEQ 0 goto error
-
-  echo DONE!
   popd
 )
+
+:: 4. run webpack
+pushd "%DEPLOYMENT_TARGET%"
+call :ExecuteCmd !NPM_CMD! run build
+IF !ERRORLEVEL! NEQ 0 goto error
+popd
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 goto end
 
